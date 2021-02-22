@@ -194,9 +194,9 @@ should_install_command_line_tools() {
   fi
 
   if version_gt "$macos_version" "10.13"; then
-    ! [[ -e "/Library/Developer/CommandLineTools/usr/bin/git" ]]
+    ! [[ -e "/Applications/Xcode.app/Contents/Developer/usr/bin/git" ]]
   else
-    ! [[ -e "/Library/Developer/CommandLineTools/usr/bin/git" ]] ||
+    ! [[ -e "/Applications/Xcode.app/Contents/Developer/usr/bin/git" ]] ||
       ! [[ -e "/usr/include/iconv.h" ]]
   fi
 }
@@ -584,7 +584,7 @@ if should_install_command_line_tools && test -t 0; then
   execute_sudo "/usr/bin/xcode-select" "--install"
   echo "Press any key when the installation has completed."
   getc
-  execute_sudo "/usr/bin/xcode-select" "--switch" "/Library/Developer/CommandLineTools"
+  execute_sudo "/usr/bin/xcode-select" "--switch" "/Applications/Xcode.app/Contents/Developer"
 fi
 
 if [[ -z "${HOMEBREW_ON_LINUX-}" ]] && ! output="$(/usr/bin/xcrun clang 2>&1)" && [[ "$output" == *"license"* ]]; then
@@ -725,3 +725,4 @@ if [[ -n "${HOMEBREW_ON_LINUX-}" ]]; then
 
 EOS
 fi
+
